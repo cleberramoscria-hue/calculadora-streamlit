@@ -1,7 +1,7 @@
 """
-🔥 CALCULADORA PREMIUM - VERSÃO 2.1
+🔥 CALCULADORA PREMIUM - VERSÃO 2.3
 100% segura | Responsiva | Histórico | Tema escuro/claro
-CORES CORRIGIDAS!
+SIDEBAR CORRIGIDA!
 """
 
 import streamlit as st
@@ -21,16 +21,64 @@ if "tema" not in st.session_state:
 def alternar_tema():
     st.session_state.tema = "claro" if st.session_state.tema == "escuro" else "escuro"
 
-# 🎨 CSS PERSONALIZADO COM CORES CORRETAS
+# 🎨 CSS PERSONALIZADO COM SIDEBAR CORRIGIDA
 if st.session_state.tema == "escuro":
     tema_css = """
-    /* Fundo escuro */
+    /* Fundo principal escuro */
     .stApp {
         background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     }
     
-    /* Textos BRANCOS no tema escuro */
-    h1, h2, h3, h4, h5, h6, p, span, label, .stMarkdown {
+    /* ===== SIDEBAR COMPLETAMENTE ESCURA ===== */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 100%) !important;
+        border-right: 1px solid rgba(255,255,255,0.1) !important;
+    }
+    
+    [data-testid="stSidebar"] * {
+        color: #ffffff !important;
+    }
+    
+    [data-testid="stSidebar"] .stMarkdown,
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] label,
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3,
+    [data-testid="stSidebar"] h4,
+    [data-testid="stSidebar"] h5,
+    [data-testid="stSidebar"] h6 {
+        color: #ffffff !important;
+    }
+    
+    /* Botões na sidebar */
+    [data-testid="stSidebar"] .stButton button {
+        background: linear-gradient(135deg, #ff6b6b, #ee5a24) !important;
+        color: white !important;
+        border: none !important;
+    }
+    
+    [data-testid="stSidebar"] .stButton button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+    }
+    
+    /* Links na sidebar */
+    [data-testid="stSidebar"] a {
+        color: #ff6b6b !important;
+        text-decoration: none;
+    }
+    
+    [data-testid="stSidebar"] a:hover {
+        color: #ff8888 !important;
+        text-decoration: underline;
+    }
+    
+    /* ===== FIM SIDEBAR ===== */
+    
+    /* TODOS os textos BRANCOS no tema escuro */
+    h1, h2, h3, h4, h5, h6, p, span, label, .stMarkdown, .stCaption {
         color: #ffffff !important;
     }
     
@@ -40,36 +88,17 @@ if st.session_state.tema == "escuro":
         text-shadow: 0 0 10px rgba(255,255,255,0.3);
     }
     
-    /* Subtítulo */
-    .stCaption {
-        color: #cccccc !important;
-    }
-    
-    /* Botão de calcular */
-    .stButton > button {
-        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-        color: white !important;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(255,107,107,0.3);
-        font-weight: bold;
-    }
-    
-    .stButton > button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(255,107,107,0.5);
-    }
-    
-    /* Botão da sidebar */
-    .stButton button {
-        color: white !important;
-    }
-    
     /* Inputs com texto branco */
     .stNumberInput > div > div > input {
         background: rgba(255,255,255,0.1);
         color: white !important;
         border-radius: 10px;
         border: 1px solid rgba(255,255,255,0.3);
+    }
+    
+    .stNumberInput > div > div > input:focus {
+        border-color: #ff6b6b !important;
+        box-shadow: 0 0 5px rgba(255,107,107,0.5);
     }
     
     /* Selectbox com texto branco */
@@ -83,42 +112,45 @@ if st.session_state.tema == "escuro":
         color: white !important;
     }
     
-    /* Resultado */
-    .result-box {
-        background: linear-gradient(135deg, #0f3460, #1a1a2e);
-        border: 1px solid rgba(255,255,255,0.2);
+    /* Botão de calcular principal */
+    .stButton > button {
+        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
         color: white !important;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+        font-weight: bold;
+        border: none;
     }
     
-    /* Sidebar */
-    .css-1d391kg {
-        background: rgba(0,0,0,0.5);
-        backdrop-filter: blur(10px);
+    .stButton > button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(255,107,107,0.5);
     }
     
-    .css-1d391kg .stMarkdown, 
-    .css-1d391kg label,
-    .css-1d391kg h1,
-    .css-1d391kg h2,
-    .css-1d391kg h3 {
-        color: white !important;
+    /* Resultado sucesso */
+    .stAlert[data-baseweb="notification"] {
+        background: rgba(0,255,0,0.15) !important;
+        border-left: 4px solid #00ff88 !important;
     }
     
-    /* Mensagem de sucesso */
-    .stAlert {
-        background: rgba(0,255,0,0.2) !important;
+    .stAlert p {
         color: #00ff88 !important;
     }
     
     /* Mensagem de erro */
-    .stAlert {
-        background: rgba(255,0,0,0.2) !important;
-        color: #ff6666 !important;
+    .stAlert[data-baseweb="notification"]:has(.stAlert) {
+        background: rgba(255,0,0,0.15) !important;
+        border-left: 4px solid #ff4444 !important;
     }
     
-    /* Links na sidebar */
-    .sidebar .stMarkdown a {
-        color: #ff6b6b !important;
+    /* Rodapé */
+    footer, .stFooter {
+        color: #888888 !important;
+    }
+    
+    /* Divisores */
+    hr {
+        border-color: rgba(255,255,255,0.1) !important;
     }
     """
 else:
@@ -126,6 +158,22 @@ else:
     /* Fundo claro */
     .stApp {
         background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+    
+    /* Sidebar clara */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #ffffff 0%, #f0f2f5 100%) !important;
+        border-right: 1px solid #ddd !important;
+    }
+    
+    [data-testid="stSidebar"] * {
+        color: #1a1a2e !important;
+    }
+    
+    /* Botões na sidebar */
+    [data-testid="stSidebar"] .stButton button {
+        background: linear-gradient(135deg, #ff6b6b, #ee5a24) !important;
+        color: white !important;
     }
     
     /* Textos escuros no tema claro */
@@ -162,11 +210,9 @@ else:
         border-radius: 10px;
     }
     
-    /* Resultado */
-    .result-box {
-        background: white;
-        border: 1px solid #ddd;
-        color: #1a1a2e !important;
+    /* Links */
+    a {
+        color: #ee5a24 !important;
     }
     """
 
@@ -182,24 +228,35 @@ st.caption("100% segura | Sem eval() | Design moderno")
 
 # 📊 SIDEBAR
 with st.sidebar:
-    st.header("🎮 Controles")
+    st.markdown("## 🎮 Controles")
     
     # Tema
-    st.button("🌙 Tema Escuro" if st.session_state.tema == "claro" else "🌞 Tema Claro", 
-              on_click=alternar_tema, use_container_width=True)
+    if st.button("🌙 Tema Escuro" if st.session_state.tema == "claro" else "🌞 Tema Claro", use_container_width=True):
+        alternar_tema()
+        st.rerun()
     
-    st.header("🔗 Links")
+    st.markdown("---")
+    
+    st.markdown("## 🔗 Links")
     st.markdown("[🐙 GitHub](https://github.com/cleberramoscria-hue)")
     st.markdown("[💼 LinkedIn](https://www.linkedin.com/in/cleber-ramos-oliveira-00035a397/)")
     st.markdown("[📧 E-mail](mailto:cleber.ramos.cria@gmail.com)")
     
-    st.header("📜 Histórico")
+    st.markdown("---")
+    
+    st.markdown("## 📜 Histórico")
     if st.button("🗑️ Limpar histórico", use_container_width=True):
         st.session_state.historico = []
         st.rerun()
     
-    for item in reversed(st.session_state.historico[-10:]):
-        st.caption(item)
+    st.markdown("---")
+    
+    # Mostrar histórico
+    if st.session_state.historico:
+        for item in reversed(st.session_state.historico[-10:]):
+            st.markdown(f"📌 {item}")
+    else:
+        st.caption("Nenhum cálculo ainda")
 
 # 🧮 INTERFACE PRINCIPAL
 st.markdown("---")
