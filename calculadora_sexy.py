@@ -94,7 +94,7 @@ st.markdown("""
 
 # 🎯 TÍTULO
 st.markdown("""
-<h1>🔥 CALCULADORA SEXY 🔥</h1>
+<h1>🔥 CALCULADORA 🔥</h1>
 <p class="subtitle">Design moderno | 100% segura | Sem eval()</p>
 """, unsafe_allow_html=True)
 
