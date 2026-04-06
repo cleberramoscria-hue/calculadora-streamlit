@@ -1,6 +1,7 @@
 """
-🔥 CALCULADORA PREMIUM - VERSÃO 2.0
+🔥 CALCULADORA PREMIUM - VERSÃO 2.1
 100% segura | Responsiva | Histórico | Tema escuro/claro
+CORES CORRIGIDAS!
 """
 
 import streamlit as st
@@ -20,46 +21,151 @@ if "tema" not in st.session_state:
 def alternar_tema():
     st.session_state.tema = "claro" if st.session_state.tema == "escuro" else "escuro"
 
-# 🎨 CSS PERSONALIZADO COM HOVER EFFECT
+# 🎨 CSS PERSONALIZADO COM CORES CORRETAS
 if st.session_state.tema == "escuro":
     tema_css = """
+    /* Fundo escuro */
     .stApp {
         background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     }
+    
+    /* Textos BRANCOS no tema escuro */
+    h1, h2, h3, h4, h5, h6, p, span, label, .stMarkdown {
+        color: #ffffff !important;
+    }
+    
+    /* Título principal */
+    h1 {
+        color: #ffffff !important;
+        text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+    
+    /* Subtítulo */
+    .stCaption {
+        color: #cccccc !important;
+    }
+    
+    /* Botão de calcular */
     .stButton > button {
         background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-        color: white;
+        color: white !important;
         transition: all 0.3s ease;
         box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+        font-weight: bold;
     }
+    
     .stButton > button:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(255,107,107,0.5);
     }
+    
+    /* Botão da sidebar */
+    .stButton button {
+        color: white !important;
+    }
+    
+    /* Inputs com texto branco */
+    .stNumberInput > div > div > input {
+        background: rgba(255,255,255,0.1);
+        color: white !important;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.3);
+    }
+    
+    /* Selectbox com texto branco */
+    .stSelectbox > div > div {
+        background: rgba(255,255,255,0.1);
+        color: white !important;
+        border-radius: 10px;
+    }
+    
+    .stSelectbox label {
+        color: white !important;
+    }
+    
+    /* Resultado */
     .result-box {
         background: linear-gradient(135deg, #0f3460, #1a1a2e);
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white !important;
+    }
+    
+    /* Sidebar */
+    .css-1d391kg {
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(10px);
+    }
+    
+    .css-1d391kg .stMarkdown, 
+    .css-1d391kg label,
+    .css-1d391kg h1,
+    .css-1d391kg h2,
+    .css-1d391kg h3 {
+        color: white !important;
+    }
+    
+    /* Mensagem de sucesso */
+    .stAlert {
+        background: rgba(0,255,0,0.2) !important;
+        color: #00ff88 !important;
+    }
+    
+    /* Mensagem de erro */
+    .stAlert {
+        background: rgba(255,0,0,0.2) !important;
+        color: #ff6666 !important;
+    }
+    
+    /* Links na sidebar */
+    .sidebar .stMarkdown a {
+        color: #ff6b6b !important;
     }
     """
 else:
     tema_css = """
+    /* Fundo claro */
     .stApp {
         background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     }
+    
+    /* Textos escuros no tema claro */
+    h1, h2, h3, h4, h5, h6, p, span, label, .stMarkdown {
+        color: #1a1a2e !important;
+    }
+    
+    /* Botão de calcular */
     .stButton > button {
         background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-        color: white;
+        color: white !important;
         transition: all 0.3s ease;
         box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+        font-weight: bold;
     }
+    
     .stButton > button:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(255,107,107,0.5);
     }
+    
+    /* Inputs */
+    .stNumberInput > div > div > input {
+        background: white;
+        color: #1a1a2e !important;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+    }
+    
+    /* Selectbox */
+    .stSelectbox > div > div {
+        background: white;
+        color: #1a1a2e !important;
+        border-radius: 10px;
+    }
+    
+    /* Resultado */
     .result-box {
         background: white;
         border: 1px solid #ddd;
-    }
-    h1, .stMarkdown, .stSelectbox label, .stNumberInput label {
         color: #1a1a2e !important;
     }
     """
@@ -79,7 +185,7 @@ with st.sidebar:
     st.header("🎮 Controles")
     
     # Tema
-    st.button("🌙 Claro" if st.session_state.tema == "escuro" else "🌞 Escuro", 
+    st.button("🌙 Tema Escuro" if st.session_state.tema == "claro" else "🌞 Tema Claro", 
               on_click=alternar_tema, use_container_width=True)
     
     st.header("🔗 Links")
