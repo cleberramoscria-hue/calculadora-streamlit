@@ -1,5 +1,5 @@
 """
-🔥 CALCULADORA SEXY - Versão Premium
+🔥 CALCULADORA  - Versão Premium
 100% segura, sem eval(), com design moderno
 """
 
@@ -111,9 +111,9 @@ with st.sidebar:
     st.markdown("---")
     
     st.markdown("### 🔗 **Links**")
-    st.markdown("[🐙 GitHub](https://github.com/seu-usuario)")
-    st.markdown("[💼 LinkedIn](https://linkedin.com/in/seu-usuario)")
-    st.markdown("[📧 E-mail](mailto:seu-email@email.com)")
+    st.markdown("[🐙 GitHub](https://github.com/cleberramoscria-hue)")
+    st.markdown("[💼 LinkedIn](https://www.linkedin.com/in/cleber-ramos-oliveira-00035a397/)")
+    st.markdown("[📧 E-mail](mailto:cleber.ramos.cria@gmail.com)")
     
     st.markdown("---")
     
