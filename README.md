@@ -1,3 +1,16 @@
+# 🔥 Calculadora 🔥
+
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-green?style=for-the-badge)
+![Security](https://img.shields.io/badge/Security-100%25-brightgreen?style=for-the-badge)
+
+> Calculadora moderna com design premium, **100% segura** e sem uso da função `eval()`
+
+## 📸 Preview
+
+![Calculadora em ação](screenshot.png)
+
 ## ✨ Funcionalidades
 
 | Operação | Status |
